@@ -36,7 +36,7 @@ def checkHigh(score):
                 return i+2
         return "loser"
 
-typey = checkHigh(scorey)
+typey = checkHigh(int(scorey))
 
 total_rows = len(oldScores)
 total_columns = len(oldScores[0])
@@ -74,7 +74,7 @@ def buttonClick():
 
 def updateTable(scoreTime):
     r = scoreTime
-    with open("highscores.csv", 'w') as csvfile:
+    with open("Python/targetPractice/highscores.csv", 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(r)
 
