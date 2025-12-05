@@ -53,11 +53,11 @@ class Powerup:
         self.colour = (255,0,0) #red
         self.hidden_timer = 0 #how long they are hidden for, 0 at beginning as they begin unhidden
 
-        self.rect = pygame.rect.Rect(self.x, self.y, self.WIDTH, self.HEIGHT) #collision rect for handling mouse clicks
+        self.rect = pygame.rect.Rect(self.x, self.y, 70, 70) #collision rect for handling mouse clicks
         self.time = LIFETIME #how long until they deal damage to player
 
         self.texture = (pygame.image.load("image/freeze.png") if self.ability == "freeze" else pygame.image.load("image/death.png"))
-        self.texture = pygame.transform.scale(self.texture, [50,50])
+        self.texture = pygame.transform.scale(self.texture, [70,70])
     def freeze(self):
         global frozen
         frozen = 4000
