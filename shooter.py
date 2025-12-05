@@ -262,6 +262,9 @@ def main():
             playing = False
         cursor.refresh()
         cursor.draw()
+
+        if frozen > 0:
+            SCREEN.fill((0,7,100), special_flags=pygame.BLEND_ADD)
         pygame.display.flip() # update window
 
     return(player.score) #returns score upon loss
