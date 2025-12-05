@@ -57,6 +57,7 @@ class Powerup:
         self.time = LIFETIME #how long until they deal damage to player
 
         self.texture = (pygame.image.load("freeze.png") if self.ability == "freeze" else pygame.image.load("death.png"))
+        self.texture = pygame.transform.scale(self.texture, [50,50])
     def freeze(self):
         global frozen
         frozen = 4000
@@ -65,7 +66,7 @@ class Powerup:
         return self.rect.collidepoint(location)
     # this function is a bit stupid as it just does what pygames click does
     def draw(self):
-        pygame.draw.rect(SCREEN, (255,0,0), self.rect)
+        SCREEN.blit(self.texture, self.rect)
 
 class Player:
     def __init__(self):
