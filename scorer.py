@@ -74,7 +74,7 @@ def buttonClick():
 
 def updateTable(scoreTime):
     r = scoreTime
-    with open("highscores.csv", 'w') as csvfile:
+    with open("Python/targetPractice/highscores.csv", 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(r)
 

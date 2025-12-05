@@ -341,4 +341,7 @@ while True:
     score = main()
 
     first_play = False
+    pygame.display.set_mode((WIDTH, HEIGHT))
     subprocess.run(['python3', 'scorer.py', str(score), str(name)])
+    if full_screen:
+        pygame.display.set_mode((WIDTH, HEIGHT))
