@@ -56,7 +56,7 @@ class Powerup:
         self.rect = pygame.rect.Rect(self.x, self.y, self.WIDTH, self.HEIGHT) #collision rect for handling mouse clicks
         self.time = LIFETIME #how long until they deal damage to player
 
-        self.texture = (pygame.image.load("freeze.png") if self.ability == "freeze" else pygame.image.load("death.png"))
+        self.texture = (pygame.image.load("image/freeze.png") if self.ability == "freeze" else pygame.image.load("image/death.png"))
         self.texture = pygame.transform.scale(self.texture, [50,50])
     def freeze(self):
         global frozen
