@@ -41,6 +41,8 @@ typey = checkHigh(int(scorey))
 total_rows = len(oldScores)
 total_columns = len(oldScores[0])
 
+
+
 main = tk.Tk()
 main.title('Highscores')
 
