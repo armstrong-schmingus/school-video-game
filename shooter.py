@@ -44,7 +44,6 @@ class Powerup:
         self.y = y
         self.ability = random.choice(["freeze", "kill"])
 
-        self.move_to = [random.random()*(WIDTH),random.random()*(HEIGHT)] #where the targets move towards
 
 
         self.WIDTH = TARGET_WIDTH #the size of each target
@@ -99,8 +98,8 @@ class Target:
         self.x = x
         self.y = y
 
-        self.move_to = [random.random()*(WIDTH),random.random()*(HEIGHT)] #where the targets move towards
-
+        self.velx = random.random()-0.5
+        self.vely = random.random()-0.5
 
         self.WIDTH = TARGET_WIDTH #the size of each target
         self.HEIGHT = TARGET_HEIGHT
@@ -123,8 +122,21 @@ class Target:
         """This function moves targets, decreases relevant timers and unhides if needed. 
         Delta T is the length of the last frame, normalises movement and animation, 
         measured in ms. It will return true on damage, otherwise None"""
-
-        self.x, self.y = pygame.math.lerp(self.x, self.move_to[0], 0.001*deltaT), pygame.math.lerp(self.y, self.move_to[1], 0.001*deltaT) #linear interpilation function, moves quicker with more distance
+        self.x += self.velx*deltaT
+        self.y += self.vely*deltaT
+        if self.x < self.WIDTH/2:
+            self.velx *= -1
+            self.x = self.WIDTH/2+1
+        elif self.x > WIDTH-self.WIDTH/2:
+            self.velx *= -1
+            self.x = WIDTH-self.WIDTH/2-1
+        if self.y < self.HEIGHT/2:
+            self.vely *= -1
+            self.y = self.HEIGHT/2+1
+        elif self.y > HEIGHT-self.HEIGHT/2:
+            self.vely *= -1
+            self.y = HEIGHT-self.HEIGHT/2-1
+            
         self.rect = pygame.rect.Rect(self.x, self.y, self.WIDTH, self.HEIGHT) #reset the collision rect as coordinates have changed
 
         if self.hidden_timer > 0: #decrease the hidden timer if the object is hidden
