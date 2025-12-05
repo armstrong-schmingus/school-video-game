@@ -215,8 +215,7 @@ def main():
                         if powerup.ability == "freeze":
                             frozen = 2000
                         elif powerup.ability == "kill":
-                            for target in target_list:
-                                target.hide()
+                            target_list = target_list[:-3]
                         ability_list.remove(powerup)
                 sound.set_volume(0.5)
 
