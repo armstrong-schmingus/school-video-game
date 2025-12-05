@@ -218,7 +218,6 @@ def main():
                             for target in target_list:
                                 target.hide()
                         ability_list.remove(powerup)
-                        print("hi")
                 sound.set_volume(0.5)
 
                 pygame.mixer.find_channel(True).play(sound)
