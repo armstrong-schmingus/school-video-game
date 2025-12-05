@@ -10,7 +10,7 @@ r = []
 for i in range(50):
     r.append(blanky)
 
-file = "Python/targetPractice/highscores.csv"
+file = "highscores.csv"
 
 # Writing to CSV file
 with open(file, 'w', newline='') as csvfile:
