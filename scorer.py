@@ -2,7 +2,7 @@ import tkinter as tk
 import sys, csv, datetime
 
 # Retrieve arguments passed from the calling script
-scorey = int(sys.argv[1]) #score
+scorey = sys.argv[1] #score
 entry = sys.argv[2] #name
 
 class Table:
@@ -16,14 +16,14 @@ class Table:
                 self.e.insert(tk.END, oldScores[i][j])
                 self.e.config(state=tk.DISABLED)
 
-with open("highscores.csv", mode="r") as scores:
+with open("Python/targetPractice/highscores.csv", mode="r") as scores:
         eScores = csv.reader(scores)
         oldScores = []
         for line in eScores:
             oldScores.append(line)
 
 def checkHigh(score):
-    with open("highscores.csv", mode="r") as scores:
+    with open("Python/targetPractice/highscores.csv", mode="r") as scores:
         eScores = csv.reader(scores)
         next(eScores)
         oldScores = []
@@ -40,7 +40,10 @@ typey = checkHigh(scorey)
 
 total_rows = len(oldScores)
 total_columns = len(oldScores[0])
-
+for score in oldScores[0]:
+    if score == "":
+        total_columns-=1
+print(oldScores[0])
 main = tk.Tk()
 main.title('Highscores')
 
@@ -74,7 +77,7 @@ def buttonClick():
 
 def updateTable(scoreTime):
     r = scoreTime
-    with open("highscores.csv", 'w') as csvfile:
+    with open("Python/targetPractice/highscores.csv", 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerows(r)
 
