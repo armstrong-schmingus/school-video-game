@@ -1,2 +1,2 @@
 # school-video-game
-Nord Anglia school video game
+school video game
