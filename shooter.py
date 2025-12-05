@@ -1,7 +1,4 @@
-import pygame
-import random
-import sys
-import subprocess
+import pygame, random, sys, subprocess
 class Input_Box:
     def __init__(self, rect):
         self.rect = rect
