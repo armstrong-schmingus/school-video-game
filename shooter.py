@@ -1,4 +1,7 @@
-import pygame, random, sys, subprocess
+import pygame
+import random
+import sys
+import subprocess
 class Input_Box:
     def __init__(self, rect):
         self.rect = rect
@@ -119,20 +122,20 @@ class Target:
         """This function moves targets, decreases relevant timers and unhides if needed. 
         Delta T is the length of the last frame, normalises movement and animation, 
         measured in ms. It will return true on damage, otherwise None"""
-        self.x += self.velx*deltaT
-        self.y += self.vely*deltaT
-        if self.x < self.WIDTH/2:
+        self.x += self.velx*deltaT/5
+        self.y += self.vely*deltaT/5
+        if self.x < 0:
             self.velx *= -1
-            self.x = self.WIDTH/2+1
-        elif self.x > WIDTH-self.WIDTH/2:
+            self.x = 1
+        elif self.x > WIDTH-self.WIDTH:
             self.velx *= -1
-            self.x = WIDTH-self.WIDTH/2-1
-        if self.y < self.HEIGHT/2:
+            self.x = WIDTH-self.WIDTH-1
+        if self.y < 0:
             self.vely *= -1
-            self.y = self.HEIGHT/2+1
-        elif self.y > HEIGHT-self.HEIGHT/2:
+            self.y = 1
+        elif self.y > HEIGHT-self.HEIGHT:
             self.vely *= -1
-            self.y = HEIGHT-self.HEIGHT/2-1
+            self.y = HEIGHT-self.HEIGHT-1
             
         self.rect = pygame.rect.Rect(self.x, self.y, self.WIDTH, self.HEIGHT) #reset the collision rect as coordinates have changed
 
