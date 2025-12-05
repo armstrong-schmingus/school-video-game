@@ -1,6 +1,7 @@
 import pygame
 import random
 import sys
+import subprocess
 class Input_Box:
     def __init__(self, rect):
         self.rect = rect
@@ -324,3 +325,4 @@ while True:
     score = main()
 
     first_play = False
+    subprocess.run(['python3', 'scorer.py', score, name])
