@@ -1,2 +1,2 @@
 import subprocess
-subprocess.run(['python3', 'scorer.py', "0", ""])
+subprocess.run(['python3', 'scorer.py', "0", "BLANK"])
