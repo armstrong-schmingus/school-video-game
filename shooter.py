@@ -122,8 +122,8 @@ class Target:
         """This function moves targets, decreases relevant timers and unhides if needed. 
         Delta T is the length of the last frame, normalises movement and animation, 
         measured in ms. It will return true on damage, otherwise None"""
-        self.x += self.velx*deltaT/5
-        self.y += self.vely*deltaT/5
+        self.x += self.velx*deltaT/2
+        self.y += self.vely*deltaT/2
         if self.x < 0:
             self.velx *= -1
             self.x = 1
@@ -160,8 +160,8 @@ class Target:
         sound = pygame.mixer.Sound("sound/explode.mp3")
         sound.set_volume(0.3)
         pygame.mixer.find_channel(True).play(sound)
-        self.move_to = [random.random()*(WIDTH),random.random()*(HEIGHT)] #where the targets move towards
-
+        self.velx = random.random()-0.5
+        self.vely = random.random()-0.5
 
     def draw(self):
         """draws the target sprite"""
@@ -227,7 +227,7 @@ def main():
                         if powerup.ability == "freeze":
                             frozen = 2000
                         elif powerup.ability == "kill":
-                            target_list = target_list[:-3]
+                            target_list = target_list[:-1]
                         ability_list.remove(powerup)
                 sound.set_volume(0.5)
 
