@@ -324,5 +324,4 @@ while True:
     name = input_name_box.text
     score = main()
     first_play = False
-
-subprocess.run(['python3', 'scorer.py', score])
+    subprocess.run(['python3', 'scorer.py', score, name])
