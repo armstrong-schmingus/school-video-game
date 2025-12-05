@@ -2,7 +2,7 @@ import tkinter as tk
 import sys, csv, datetime
 
 # Retrieve arguments passed from the calling script
-scorey = sys.argv[1] #score
+scorey = int(sys.argv[1]) #score
 entry = sys.argv[2] #name
 
 class Table:

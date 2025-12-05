@@ -327,4 +327,4 @@ while True:
     score = main()
 
     first_play = False
-    subprocess.run(['python3', 'scorer.py', score, name])
+    subprocess.run(['python3', 'scorer.py', str(score), str(name)])
