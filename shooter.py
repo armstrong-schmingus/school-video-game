@@ -29,7 +29,7 @@ class Cursor:
     def __init__(self):
         self.coords = [0,0]
         self.texture = pygame.image.load("image/crosshair.png")
-        self.texture = pygame.transform.scale(self.texture, [50,50])
+        self.texture = pygame.transform.scale(self.texture, [70,70])
     def refresh(self):
         self.coords = pygame.mouse.get_pos()
     def draw(self):
@@ -159,7 +159,7 @@ HIDDEN_TIME = 500 #constant for how long targets are hidden for after being clic
 SCOREFONT = pygame.font.SysFont("Minecraft", 50) #font object
 LIFETIME = 4000  #how long targets last til they do damage, in miliseconds
 
-BACKGROUND = pygame.image.load("image/moon.jpg") #image bg
+BACKGROUND = pygame.image.load("image/moon.png") #image bg
 BACKGROUND = pygame.transform.scale(BACKGROUND, [WIDTH, HEIGHT]) #scale to window size
 TARGET_WIDTH = 51.2*2
 TARGET_HEIGHT = 42.8*2
@@ -322,4 +322,5 @@ while True:
             timer = 0
     name = input_name_box.text
     score = main()
+
     first_play = False
