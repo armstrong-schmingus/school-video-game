@@ -1,4 +1,7 @@
-import pygame, random, sys, subprocess
+import pygame
+import random
+import sys
+import subprocess
 class Input_Box:
     def __init__(self, rect):
         self.rect = rect
@@ -41,7 +44,6 @@ class Powerup:
         self.y = y
         self.ability = random.choice(["freeze", "kill"])
 
-        self.move_to = [random.random()*(WIDTH),random.random()*(HEIGHT)] #where the targets move towards
 
 
         self.WIDTH = TARGET_WIDTH #the size of each target
@@ -96,8 +98,8 @@ class Target:
         self.x = x
         self.y = y
 
-        self.move_to = [random.random()*(WIDTH),random.random()*(HEIGHT)] #where the targets move towards
-
+        self.velx = random.random()-0.5
+        self.vely = random.random()-0.5
 
         self.WIDTH = TARGET_WIDTH #the size of each target
         self.HEIGHT = TARGET_HEIGHT
@@ -120,8 +122,21 @@ class Target:
         """This function moves targets, decreases relevant timers and unhides if needed. 
         Delta T is the length of the last frame, normalises movement and animation, 
         measured in ms. It will return true on damage, otherwise None"""
-
-        self.x, self.y = pygame.math.lerp(self.x, self.move_to[0], 0.001*deltaT), pygame.math.lerp(self.y, self.move_to[1], 0.001*deltaT) #linear interpilation function, moves quicker with more distance
+        self.x += self.velx*deltaT/2
+        self.y += self.vely*deltaT/2
+        if self.x < 0:
+            self.velx *= -1
+            self.x = 1
+        elif self.x > WIDTH-self.WIDTH:
+            self.velx *= -1
+            self.x = WIDTH-self.WIDTH-1
+        if self.y < 0:
+            self.vely *= -1
+            self.y = 1
+        elif self.y > HEIGHT-self.HEIGHT:
+            self.vely *= -1
+            self.y = HEIGHT-self.HEIGHT-1
+            
         self.rect = pygame.rect.Rect(self.x, self.y, self.WIDTH, self.HEIGHT) #reset the collision rect as coordinates have changed
 
         if self.hidden_timer > 0: #decrease the hidden timer if the object is hidden
@@ -145,8 +160,8 @@ class Target:
         sound = pygame.mixer.Sound("sound/explode.mp3")
         sound.set_volume(0.3)
         pygame.mixer.find_channel(True).play(sound)
-        self.move_to = [random.random()*(WIDTH),random.random()*(HEIGHT)] #where the targets move towards
-
+        self.velx = random.random()-0.5
+        self.vely = random.random()-0.5
 
     def draw(self):
         """draws the target sprite"""
@@ -212,7 +227,7 @@ def main():
                         if powerup.ability == "freeze":
                             frozen = 2000
                         elif powerup.ability == "kill":
-                            target_list = target_list[:-3]
+                            target_list = target_list[:-1]
                         ability_list.remove(powerup)
                 sound.set_volume(0.5)
 
@@ -247,6 +262,9 @@ def main():
             playing = False
         cursor.refresh()
         cursor.draw()
+
+        if frozen > 0:
+            SCREEN.fill((0,7,100), special_flags=pygame.BLEND_ADD)
         pygame.display.flip() # update window
 
     return(player.score) #returns score upon loss
@@ -323,4 +341,7 @@ while True:
     score = main()
 
     first_play = False
+    pygame.display.set_mode((WIDTH, HEIGHT))
     subprocess.run(['python3', 'scorer.py', str(score), str(name)])
+    if full_screen:
+        pygame.display.set_mode((WIDTH, HEIGHT))
