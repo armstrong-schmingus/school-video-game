@@ -15,13 +15,16 @@ tableQ = """
     );
 """
 
-curse.execute(tableQ)
+def addBlanks():
+    curse.execute(tableQ)
 
-blanky = "('0', '1', 'BLANK', '0')"
+    blanky = "('0', '1', 'BLANK', '0')"
 
-for i in range(50):
-    res = blanky[:2] + i + blanky[3:]
-    print(res)
+    for i in range(50):
+        res = blanky[:2] + i + blanky[3:]
+        print(res)
+
+#addBlanks()
 
 print("wahoo")
 curse.close()
