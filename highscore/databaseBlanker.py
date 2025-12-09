@@ -8,10 +8,10 @@ curse.execute("DROP TABLE IF EXISTS SCORES")
 
 tableQ = """
     CREATE TABLE SCORES (
-        placement INT PRIMARY KEY,
+        id INT  PRIMARY KEY AUTOINCREMENT,
         score INT,
         name CHAR(5) NOT NULL,
-        unixTime INT
+        datetime DATETIME DEFAULT CURRENT_TIMESTAMP
     );
 """
 
